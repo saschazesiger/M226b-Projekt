@@ -1,4 +1,4 @@
-package com.example.plugins
+package com.janis.plugins
 
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
