@@ -1,1 +1,1 @@
-rootProject.name = "com.example.m226b"
+rootProject.name = "ktor-starter"
