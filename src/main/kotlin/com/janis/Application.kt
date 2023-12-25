@@ -1,15 +1,21 @@
-package com.amarerichard
+package com.janis
 
+import com.janis.plugins.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.amarerichard.plugins.*
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
-            .start(wait = true)
+        .start(wait = true)
 }
 
 fun Application.module() {
+    configureSockets()
+    configureSerialization()
+    configureDatabases()
+    configureMonitoring()
+    configureHTTP()
+    configureSecurity()
     configureRouting()
 }
