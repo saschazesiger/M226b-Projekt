@@ -11,7 +11,7 @@ import java.sql.*
 fun Route.userRouting(app: Application) {
     route("/user") {
         get {
-            val connection = app.connectToPostgres(embedded = true)
+            val connection = app.connectToSql(embedded = false)
             val statement = connection.createStatement()
             val resultSet = statement.executeQuery("SELECT * FROM absence;")
         
