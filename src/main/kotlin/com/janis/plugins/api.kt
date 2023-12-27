@@ -13,6 +13,7 @@ fun Route.apiRouting() {
         post {
             // Hier können Sie Ihre Logik für POST-Anfragen hinzufügen
         }
+        
         // Fügen Sie weitere HTTP-Methoden nach Bedarf hinzu
     }
 }

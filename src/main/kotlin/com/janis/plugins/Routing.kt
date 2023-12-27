@@ -9,6 +9,7 @@ fun Application.configureRouting() {
     routing {
         staticResources("/", "static")
         apiRouting()
+        userRouting(this@configureRouting)
     }
 }
     

@@ -70,9 +70,9 @@ fun Application.connectToPostgres(embedded: Boolean): Connection {
     if (embedded) {
         return DriverManager.getConnection("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "root", "")
     } else {
-        val url = environment.config.property("postgres.url").getString()
-        val user = environment.config.property("postgres.user").getString()
-        val password = environment.config.property("postgres.password").getString()
+        val url = "jdbc:mysql://aws.connect.psdb.cloud:3306/time"
+        val user = "trvm1fmwhutcuudghtue"
+        val password = "pscale_pw_Lxn7APZv7uMeJeO9bBWn9JQWZ9JaqlAVSQ91NxOOJh3"
 
         return DriverManager.getConnection(url, user, password)
     }
