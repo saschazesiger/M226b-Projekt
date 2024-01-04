@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          path: '/frontend' # Adjusted path to /frontend
+          path: 'frontend'
 
       - name: Detect package manager
         id: detect-package-manager
@@ -58,9 +58,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            frontend/dist # Adjusted path to /frontend/dist
-            frontend/.nuxt # Adjusted path to /frontend/.nuxt
-          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('frontend/dist') }} # Adjusted path to /frontend/dist
+            frontend/dist 
+            frontend/.nuxt 
+          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('frontend/dist') }}
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
