@@ -1,29 +1,40 @@
 class UsersController < ApplicationController
-  def login
-    user = User.find_by(username: params[:username])
+  before_action :authenticate_user
 
-    if user && user.authenticate(params[:password])
-      user.update!(lastlogin: Time.current, password: params[:password])
-			expiration_time = 1.day.from_now.to_i
-      jwt_token = encode_token(user_id: user.id, timestamp: Time.current.to_i, exp: expiration_time)
-      render json: { success: true, jwt: jwt_token }
-    else
-      render json: { success: false, error: 'Invalid username or password' }, status: :unauthorized
-    end
 
-  rescue ActiveRecord::RecordInvalid => e
-    validation_errors = e.record.errors.full_messages.join(', ')
-    render json: { success: false, error: validation_errors }, status: :unprocessable_entity
-
-  rescue => e
-    render json: { success: false, error: e.message }, status: :internal_server_error
-  end
-
+  # Just for testing
   def hash
     password = params[:password]
     user = User.new(password: password)
     hashed_password = user.password_digest
     render json: { hash: hashed_password }
+  end
+
+  def list
+    own_user = @current_user
+    supervisor_users = User.where(supervisor_id: own_user.id)
+    render json: { user: supervisor_users, own: own_user }
+  end
+
+
+
+  def edit
+    username = params[:username]
+    user = User.find_by(username: username)
+    if user
+      if user.supervisor_id == @current_user.id
+        user.update(user_params)
+        render json: { success: 'true' }
+      else
+        render json: { success: 'false', message: 'You are not authorized to edit this user' }
+      end
+    else
+      render json: { success: 'true' }
+    end
+  end
+  private
+  def user_params
+    params.permit(:username, :password, :firstname, :surname, :email)
   end
 
 end
