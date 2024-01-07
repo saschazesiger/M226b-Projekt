@@ -46,15 +46,21 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
+RUN chmod 777 -R /rails/bin/
+
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 
 
-ENV DATABASE_URL="mysql2://root:password@db:3306/app"
+ENV DATABASE_URL="mysql2://janiszesiger:123Heinrich!@sql664.your-server.de:3306/m226_prod"
+ENV SECRET_KEY_BASE=61b498e152f71dceafcddd98d65ae110e61e24cbff1d271bc7671aecaeac8d5889afdbdd1f51126470225a261ca5dd67cfa83e4ea6a549aa83fc750dcb9c3fec
+
+
 
 # Entrypoint prepares the database.
+
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
