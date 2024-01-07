@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 import fetchAuth from "@/client-js/fetchAuth";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [warning, setWarning] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,48 +20,46 @@ const LoginForm = () => {
     });
 
     const data = await response.json();
+    console.log(data);
     if (data.success && data.jwt) {
       localStorage.setItem("jwt", data.jwt);
+      props.getLogin("loggedin");
+    } else {
+      setWarning(data.error);
     }
-    console.log(data);
   };
-
-  async function handleData(e) {
-    e.preventDefault();
-
-    const response = await fetchAuth("https://api-time.tinyweb.net/user/list");
-    const data = await response.json();
-    console.log(data);
-  }
 
   return (
     <>
+    <div></div>
       <form onSubmit={handleLogin}>
         <div>
-          <label htmlFor="username">Username:</label>
           <input
+            placeholder="Username"
             type="text"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="form__input"
           />
         </div>
+        <br />
         <div>
-          <label htmlFor="password">Password:</label>
           <input
+            placeholder="Password"
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="form__input"
           />
         </div>
-        <button type="submit">Login</button>
+        <br />
+        <button type="submit" className="btn btn__primary">Login</button>
+        <br />
+        <p>{warning}</p>
       </form>
-
-      <form onSubmit={handleData}>
-
-        <button type="submit">Get</button>
-      </form>
+      
     </>
   );
 };
