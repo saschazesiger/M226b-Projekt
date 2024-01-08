@@ -43,15 +43,32 @@
   
   .container {
     display: flex;
-    
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
     background: var(--greyLight-1);
   }
 
+  .contentDiv{
+    text-align: center;
+  }
+
   h1{
     color: var(--primary);
+  }
+
+  h2{
+    color: var(--primary-light);
+  }
+
+  h2 span{
+    color: var(--primary);
+  }
+
+  .header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   
   .components {
@@ -61,12 +78,9 @@
     box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
               -.2rem -.2rem 1.8rem var(--white);
     padding: 4rem;
-    display: grid;
-    grid-template-columns: 17.6rem 19rem 20.4rem;
-    grid-template-rows: repeat(autofit, min-content);
-    grid-column-gap: 5rem;
-    grid-row-gap: 2.5rem;
     align-items: center;
+    display: flex;
+    flex-direction: column;
    }
   
   /*  SWITCH  */
@@ -240,8 +254,8 @@
     }
   
     &__secondary {
-      grid-column: 1 / 2;
-      grid-row: 5 / 6;
+      margin: 10px;
+      background: var(--greyLight-1);
       color: var(--greyDark);
       &:hover { color: var(--primary); }
       &:active {
@@ -252,6 +266,14 @@
     p { 
       font-size: 1.6rem;
     }
+  }
+
+  .active{
+    box-shadow: $inner-shadow;
+  }
+
+  .alert{
+    color: red;
   }
   
   /*  CLOCK  */

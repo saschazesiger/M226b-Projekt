@@ -22,14 +22,14 @@ class UsersController < ApplicationController
     username = params[:username]
     user = User.find_by(username: username)
     if user
-      if user.supervisor_id == @current_user.id
+      if user.supervisor_id == @current_user.id || user.id == @current_user.id
         user.update(user_params)
         render json: { success: 'true' }
       else
         render json: { success: 'false', message: 'You are not authorized to edit this user' }
       end
     else
-      render json: { success: 'true' }
+      render json: { success: 'false', message: 'User not found' }
     end
   end
   private

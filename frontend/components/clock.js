@@ -8,7 +8,7 @@ export default function Clock() {
     const [hours, setHours] = useState();
     const [minutes, setMinutes] = useState();
     const [seconds, setSeconds] = useState();
-
+  
 
     setInterval(() => {
         let today = new Date();

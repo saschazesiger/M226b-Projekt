@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [greeting, setGreeting] = useState("");
-    const [login, getLogin] = useState("loading");
+    const [users, setUsers] = useState({'own':{}, 'users':[]});
+    const [login, setLogin] = useState("loading");
 
     useEffect(() => {
         handleData();
@@ -20,21 +21,23 @@ export default function Home() {
         console.log(response)
         if ( response?.own) {
             setGreeting(`Hi ${response.own.username.charAt(0).toUpperCase() + response.own.username.slice(1)}!`);
-            getLogin("loggedin");
+            setLogin("loggedin");
+            setUsers(response)
         } else {
             setGreeting("");
-            getLogin("loggedout");
+            setLogin("loggedout");
+            
         }
     }
 
     return (
         <>
-            {login === "loggedout" && <LoginForm getLogin={getLogin} />}
+            {login === "loggedout" && <LoginForm setLogin={setLogin} />}
             <h1>
                 <span>{greeting}</span>
                 
             </h1>
-            {login === "loggedin" && <Panel getLogin={getLogin} />}
+            {login === "loggedin" && <Panel users={users} setLogin={setLogin} />}
             
         </>
     );

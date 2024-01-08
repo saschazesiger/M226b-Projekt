@@ -23,7 +23,7 @@ const LoginForm = (props) => {
     console.log(data);
     if (data.success && data.jwt) {
       localStorage.setItem("jwt", data.jwt);
-      props.getLogin("loggedin");
+      props.setLogin("loggedin");
     } else {
       setWarning(data.error);
     }
