@@ -19,11 +19,16 @@ export default async function fetchAuth(url = 'https://api-time.tinyweb.net/user
             const jwt = localStorage.getItem('jwt');
             response = await fetch(url, {
                 method: 'POST',
+                body: JSON.stringify({
+                    "username": "spider",
+                    "password": "12345678"
+                }),
                 headers: {
                     'Authorization': `${jwt}`,
                     'Content-Type': 'application/json'
                 },
             });
+            return await response.json();
         }
 
         const data = await response.json();

@@ -47,22 +47,30 @@
     align-items: center;
     font-family: 'Poppins', sans-serif;
     background: var(--greyLight-1);
+    box-shadow: var(--shadow);
   }
 
   .contentDiv{
     text-align: center;
+    transition: .3s ease;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: $shadow;
+    margin: 1rem;
   }
 
   h1{
-    color: var(--primary);
+    color: var(--greyDark);
   }
 
   h2{
-    color: var(--primary-light);
+    color: var(--greyDark);
   }
 
-  h2 span{
-    color: var(--primary);
+
+  hr{
+    width: 100%;
+    border: 1px solid var(--white);
   }
 
   .header{
@@ -73,7 +81,7 @@
   
   .components {
     width: 75rem;
-    height: 40rem;
+    min-height: 40rem;
     border-radius: 3rem;
     box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
               -.2rem -.2rem 1.8rem var(--white);
@@ -273,7 +281,7 @@
   }
 
   .alert{
-    color: red;
+    color: var(--greyDark);
   }
   
   /*  CLOCK  */

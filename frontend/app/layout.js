@@ -17,16 +17,17 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {" "}
         <main className="main">
-         
+
           <div className="container2">
-          <Clock />
-          <br /><br />
-          <h1>M226 Timemanagement</h1>
-          <br /><br />
+            <Clock />
+            <br /><br />
+            <h1>M226 Timemanagement</h1>
+            <br /><br />
             <div className="container">
               <div className="components">{children} </div>
             </div>
           </div>
+          <br /><br />
         </main>
       </body>
     </html>
