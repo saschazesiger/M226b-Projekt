@@ -3,10 +3,12 @@
 import { useState } from 'react';
 
 import UserPanel from "@/components/panel/userpanel";
+import TimePanel from "@/components/panel/timepanel";
 
 
 export default function Panel(props) {
   const [location, getLocation] = useState("time");
+  const [time, setTime] = useState([]);
 
   function logout() {
     localStorage.removeItem("jwt");
@@ -25,7 +27,7 @@ export default function Panel(props) {
         <button className="btn btn__secondary" onClick={logout}>Logout</button>
       </div>
       <br />
-      {location === "time" && <p>time</p>}
+      {location === "time" && <TimePanel time={time} setTime={setTime} />}
       {location === "user" && <UserPanel users={props.users} />}
     </>
   );

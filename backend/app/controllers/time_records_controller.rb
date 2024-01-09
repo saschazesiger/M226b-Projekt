@@ -50,7 +50,7 @@ class TimeRecordsController < ApplicationController
     if success == false
       render json: { success: false }
     else
-      entries = entries.order(:time)
+      entries = entries.order(time: :desc)
       render json: { success: true, entries: entries }
     end
   end

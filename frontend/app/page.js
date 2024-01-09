@@ -17,7 +17,6 @@ export default function Home() {
 
     async function handleData() {
         const response = await fetchAuth("https://api-time.tinyweb.net/user/list");
-
         console.log(response)
         if ( response?.own) {
             setGreeting(`Hi ${response.own.username.charAt(0).toUpperCase() + response.own.username.slice(1)}!`);
@@ -25,8 +24,7 @@ export default function Home() {
             setUsers(response)
         } else {
             setGreeting("");
-            setLogin("loggedout");
-            
+            setLogin("loggedout");  
         }
     }
 

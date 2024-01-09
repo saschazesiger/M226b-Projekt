@@ -3,10 +3,6 @@ import User from './user.js';
 import React from 'react';
 
 export default function UserPanel(props) {
-    console.log(props)
-    props.users.user.map((user) => {
-        console.log(user)
-    })
 
     return (
         <>
