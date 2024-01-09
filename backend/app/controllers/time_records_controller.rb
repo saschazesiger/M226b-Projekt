@@ -10,21 +10,12 @@ class TimeRecordsController < ApplicationController
     user = User.find_by(id: params[:user_id])
 
     # Check if the user is editing an entry
-    if datetime.present?
-      if action.present?
-        @current_user.time_entries.create(action: true, time: datetime, edited: true)
-      else
-        @current_user.time_entries.create(time: datetime, edited: true)
-      end
-      success = true
+    if action.present?
+      @current_user.time_entries.create(action: 1, time: datetime, edited: 0)
     else
-      if action.present?
-        @current_user.time_entries.create(action: true, time: Time.now, edited: false)
-      else
-        @current_user.time_entries.create(time: Time.now, edited: false)
-      end
-      success = true
+      @current_user.time_entries.create(time: datetime, edited: 0)
     end
+    success = true
 
     render json: { success: success }
   end
