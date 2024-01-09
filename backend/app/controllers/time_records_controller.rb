@@ -12,16 +12,16 @@ class TimeRecordsController < ApplicationController
     # Check if the user is editing an entry
     if datetime.present?
       if action.present?
-        @current_user.time_entries.create(action: true, time: datetime, edited: true)
+        @current_user.time_entries.create(action: 1, time: datetime, edited: true)
       else
-        @current_user.time_entries.create(action: false, time: datetime, edited: true)
+        @current_user.time_entries.create(action: 0, time: datetime, edited: true)
       end
       success = true
     else
       if action.present?
-        @current_user.time_entries.create(action: true, time: Time.now, edited: false)
+        @current_user.time_entries.create(action: 1, time: Time.now, edited: false)
       else
-        @current_user.time_entries.create(action: false, time: Time.now, edited: false)
+        @current_user.time_entries.create(action: 0, time: Time.now, edited: false)
       end
       success = true
     end

@@ -16,18 +16,17 @@ export default function TimePanel(props) {
     }, [newTime]);
 
     async function handleData() {
-        if (props.time.length === 0) {
             const response = await fetchAuth("https://api-time.tinyweb.net/api/view", "GET");
             console.log("First Entry:" + `${JSON.stringify(response.entries[0])}`)
-            if (response.entries.length !== 0){
-            if ( response.entries[0].action === true) {
-                setAction("OUT");
+            if (response.entries.length !== 0) {
+                if (response.entries[0].action === false) {
+                    setAction("OUT");
+                } else {
+                    setAction("IN");
+                }
             } else {
-                setAction("IN");
+                setAction("IN")
             }
-        } else {
-            setAction("IN")
-        }
             if (response?.success === true) {
                 const updatedTime = response.entries.map(entry => {
                     const dateTime = new Date(entry.time);
@@ -39,24 +38,23 @@ export default function TimePanel(props) {
             } else {
                 setAlert(response.message);
             }
-        }
 
     }
 
-    
 
 
 
 
-    async function sendNew(e) {
-        e.preventDefault();
-        let actionBool
-        if (action === "IN") {
-            actionBool = 1;
+
+    async function sendNew() {
+        let response
+        if (action === "OUT") {
+            response = await fetchAuth(`https://api-time.tinyweb.net/api/set?action=true`, "POST");
         } else {
-            actionBool = 0;
+            response = await fetchAuth(`https://api-time.tinyweb.net/api/set`, "POST");
         }
-        const response = await fetchAuth(`https://api-time.tinyweb.net/api/set?action=${actionBool}`, "POST");
+        console.log(response)
+        setNewTime(newTime + 1);
     }
 
     return (
@@ -65,16 +63,7 @@ export default function TimePanel(props) {
             <div className="contentDiv" style={{ width: '30%' }}>
                 <p className="alert">{alert}</p>
                 <h3>{props.date}</h3>
-                <form>
-                    <input
-                        style={{ width: "96%", margin: "2%", textAlign: "center" }}
-                        name='time'
-                        type="time"
-                        placeholder='Aktuelle Uhrzeit'
-                        className="form__input"
-                    />
-                    <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action}</button>
-                </form>
+                <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action}</button>
 
             </div>
             {props.time.map((entry, index) => (
