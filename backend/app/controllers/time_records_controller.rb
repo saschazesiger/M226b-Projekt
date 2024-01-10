@@ -66,15 +66,24 @@ class TimeRecordsController < ApplicationController
     entry_id = params[:entry]
     entry = TimeEntry.find_by(id: entry_id)
     if entry
-      if entry.user_id == @current_user.id
-        old_datetime = entry.time
-        old_edited = entry.edited
-        entry.update(time: params[:time])
-        changeAt = Time.now
-        TimeLog.create(time_entry_id: entry.id, oldDatetime: old_datetime, oldEdited: old_edited, changeAt: changeAt)
-        render json: { success: 'true', changeAt: changeAt }
+      if params[:delete].present?
+          if entry.user_id == @current_user.id
+            entry.destroy
+            render json: { success: 'true', message: 'Entry deleted successfully' }
+          else
+            render json: { success: 'false', message: 'You are not authorized to delete this entry' }
+          end
       else
-        render json: { success: 'false', message: 'You are not authorized to edit this entry' }
+        if entry.user_id == @current_user.id
+          old_datetime = entry.time
+          old_edited = entry.edited
+          entry.update(time: params[:time])
+          changeAt = Time.now
+          TimeLog.create(time_entry_id: entry.id, oldDatetime: old_datetime, oldEdited: old_edited, changeAt: changeAt)
+          render json: { success: 'true', changeAt: changeAt }
+        else
+          render json: { success: 'false', message: 'You are not authorized to edit this entry' }
+        end
       end
     else
       render json: { success: 'false', message: 'Entry not found' }
