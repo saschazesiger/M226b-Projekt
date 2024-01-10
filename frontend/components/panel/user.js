@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Children } from 'react';
 import fetchAuth from "@/client-js/fetchAuth";
 
 export default function User(props) {
@@ -38,7 +38,7 @@ export default function User(props) {
 
 
     return (
-        <div className="contentDiv">
+        <div>
             <p className="alert">{alert}</p>
 
             <input

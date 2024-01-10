@@ -1,4 +1,5 @@
 
+import TimePanel2 from './timepanel2.js';
 import User from './user.js';
 import React from 'react';
 
@@ -13,7 +14,10 @@ export default function UserPanel(props) {
             <br />
             {props.users.user.map((user) => (
                 <React.Fragment key={user.id}>
-                    <User key={user.id} id={user.id} email={user.email} firstname={user.firstname} surname={user.surname} username={user.username} />
+                    <div key={user.id} className='contentDiv'>
+                    <User id={user.id} email={user.email} firstname={user.firstname} surname={user.surname} username={user.username} />
+                    <TimePanel2 userId={user.id} username={user.username} />
+                    </div>
                 </React.Fragment>
             ))}
         </>
