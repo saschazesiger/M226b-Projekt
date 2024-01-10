@@ -20,11 +20,14 @@ export default function TimePanel(props) {
             console.log("First Entry:" + `${JSON.stringify(response.entries[0])}`)
             if (response.entries.length !== 0) {
                 if (response.entries[0].action === false) {
+                    console.log("Entry FALSE")
                     setAction("OUT");
                 } else {
+                    console.log("Entry TRUE")
                     setAction("IN");
                 }
             } else {
+                console.log("No Entry")
                 setAction("IN")
             }
             if (response?.success === true) {
@@ -49,7 +52,7 @@ export default function TimePanel(props) {
     async function sendNew() {
         let response
         if (action === "OUT") {
-            response = await fetchAuth(`https://api-time.tinyweb.net/api/set?action=true`, "POST");
+            response = await fetchAuth(`https://api-time.tinyweb.net/api/set?inout=true`, "POST");
         } else {
             response = await fetchAuth(`https://api-time.tinyweb.net/api/set`, "POST");
         }
@@ -67,7 +70,7 @@ export default function TimePanel(props) {
 
             </div>
             {props.time.map((entry, index) => (
-                <Time id={entry.id} key={index} time={entry.time.clock} date={entry.time.date} action={entry.action} />
+                <Time id={entry.id} key={index} time={entry.time.clock} date={entry.time.date} action={entry.action} setNewTime={setNewTime} newTime={newTime} />
             ))}
         </>
     )
