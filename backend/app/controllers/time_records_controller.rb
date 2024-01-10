@@ -8,12 +8,9 @@ class TimeRecordsController < ApplicationController
 
     # Validate User
     user = User.find_by(id: params[:user_id])
-    if user
-      @current_user.time_entries.create(action: params[:action], time: Time.now, edited: false)
-      success = true
-    else
-      success = false
-    end
+    @current_user.time_entries.create(action: params[:action], time: Time.now, edited: false)
+    success = true
+
 
     render json: { success: success }
   end
