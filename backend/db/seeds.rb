@@ -62,3 +62,29 @@ TimeLog.create([
     {time_entry: TimeEntry.find(3), changeAt: Time.now, oldDatetime: (Time.now - 1.hours).to_s, oldEdited: false},
     {time_entry: TimeEntry.find(3), changeAt: Time.now, oldDatetime: (Time.now - 2.hours).to_s, oldEdited: true}
 ])
+
+
+Absence.create!([
+  {
+    user: User.find(2),
+    from: DateTime.now,
+    to: DateTime.now + 1.day,
+    type: 'Ferien',
+    approved: true
+  },
+  {
+    user: User.find(2),
+    from: DateTime.now - 2.days,
+    to: DateTime.now - 1.day,
+    type: 'Schule',
+    approved: false
+  },
+  {
+    user: User.find(3),
+    from: DateTime.now + 1.day,
+    to: DateTime.now + 2.days,
+    type: 'Ferien',
+    approved: true
+  }
+])
+

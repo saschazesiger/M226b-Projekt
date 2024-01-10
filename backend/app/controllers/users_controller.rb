@@ -16,8 +16,6 @@ class UsersController < ApplicationController
     render json: { user: supervisor_users, own: own_user }
   end
 
-
-
   def edit
     username = params[:username]
     user = User.find_by(username: username)
