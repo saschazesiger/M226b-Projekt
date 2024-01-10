@@ -10,6 +10,7 @@ export default function Home() {
     const [greeting, setGreeting] = useState("");
     const [users, setUsers] = useState({'own':{}, 'users':[]});
     const [login, setLogin] = useState("loading");
+    
 
     useEffect(() => {
         handleData();
