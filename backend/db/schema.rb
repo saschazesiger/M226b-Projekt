@@ -14,8 +14,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_194256) do
   create_table "time_entries", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "time"
-    t.string "action"
-    t.string "edited"
+    t.boolean "action"
+    t.boolean "edited"
     t.index ["user_id"], name: "index_time_entries_on_user_id"
   end
 
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_194256) do
     t.bigint "time_entry_id"
     t.datetime "changeAt"
     t.string "oldDatetime"
-    t.string "oldEdited"
+    t.boolean "oldEdited"
     t.index ["time_entry_id"], name: "index_time_logs_on_time_entry_id"
   end
 

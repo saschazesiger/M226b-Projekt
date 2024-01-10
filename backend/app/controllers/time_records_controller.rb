@@ -2,18 +2,33 @@ class TimeRecordsController < ApplicationController
   before_action :authenticate_user
 
   def set
-    action = params[:action]
+    action = params[:inout]
     datetime = params[:datetime]
     success = false
 
     # Validate User
     user = User.find_by(id: params[:user_id])
-    @current_user.time_entries.create(action: params[:action], time: Time.now, edited: false)
-    success = true
 
+    # Check if the user is editing an entry
+    if datetime.present?
+      if action.present?
+        @current_user.time_entries.create(action: true, time: datetime, edited: true)
+      else
+        @current_user.time_entries.create(action: false, time: datetime, edited: true)
+      end
+      success = true
+    else
+      if action.present?
+        @current_user.time_entries.create(action: true, time: Time.now, edited: false)
+      else
+        @current_user.time_entries.create(action: false, time: Time.now, edited: false)
+      end
+      success = true
+    end
 
     render json: { success: success }
   end
+
 
 
   def view
