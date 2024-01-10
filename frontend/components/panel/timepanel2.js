@@ -6,20 +6,21 @@ import { useState, useEffect } from 'react';
 import fetchAuth from "@/client-js/fetchAuth";
 import Time from './time.js';
 
-export default function TimePanel(props) {
+export default function TimePanel2(props) {
     const [action, setAction] = useState("");
     const [alert, setAlert] = useState("");
     const [newTime, setNewTime] = useState(1);
+    const [time, setTime] = useState([]);
 
     useEffect(() => {
         handleData();
     }, [newTime]);
 
     async function handleData() {
-        let response
-        response = await fetchAuth("https://api-time.tinyweb.net/api/view", "GET");
-        if (response.entries.length !== 0) {
-            if (response.entries[0].action === false) {
+        const response = await fetchAuth(`https://api-time.tinyweb.net/api/view?username=${props.username}`, "GET");
+        console.log(response)
+        if (response.entries?.length > 0) {
+            if (response.entries?.[0]?.action === false) {
                 console.log("Entry FALSE")
                 setAction("OUT");
             } else {
@@ -37,16 +38,13 @@ export default function TimePanel(props) {
                 const date = dateTime.toLocaleDateString([], { day: '2-digit', month: '2-digit', year: 'numeric' });
                 return { ...entry, time: { clock: time, date: date } };
             });
-            props.setTime(updatedTime);
+            setTime(updatedTime);
+            console.log(time)
         } else {
             setAlert(response.message);
         }
 
     }
-
-
-
-
 
 
     async function sendNew() {
@@ -65,12 +63,10 @@ export default function TimePanel(props) {
             <p className="alert">{alert}</p>
             <div className="contentDiv" style={{ width: '30%' }}>
                 <p className="alert">{alert}</p>
-                <h3>{props.date}</h3>
-                <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action}</button>
 
             </div>
-            {props.time.map((entry, index) => (
-                <Time id={entry.id} key={index} time={entry.time.clock} date={entry.time.date} action={entry.action} setNewTime={setNewTime} newTime={newTime} />
+            {time.map((entry, index) => (
+                <Time id={entry.id} key={index} time={entry.time.clock} date={entry.time.date} action={entry.action} setNewTime={setNewTime} newTime={newTime} deleteButton="no" />
             ))}
         </>
     )

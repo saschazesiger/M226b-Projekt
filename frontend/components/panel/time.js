@@ -51,9 +51,9 @@ export default function Time(props) {
 
 
     return (
-        <div className="contentDiv" style={{ width: '50%' }}>
+        <div className="contentDiv" style={{ width: '97%' }}>
             <p className="alert">{alert}</p>
-            <h3>{props.date} <b style={{color:'red'}}>{inOut}</b></h3>
+            <h3>{props.date} <b style={{color:'red'}}>{inOut}</b> </h3>
             <div className='row'>
             <input
                 style={{ width: "96%", margin: "2%", textAlign: "center" }}
@@ -67,11 +67,13 @@ export default function Time(props) {
                 onBlur={handleInputBlur}
                 className="form__input"
             />
-            <button className='btn btn__primary' style={{margin:"2%"}} onClick={handleLogs}>View Logs</button>
-            <button className='btn btn__primary' style={{margin:"2%"}} onClick={handleDelete}>DELETE</button>
+            <button className='btn btn__primary' style={{margin:"2%"}} onClick={handleLogs}>PRÜFEN</button>
+            {!props.deleteButton && (
+                <button className='btn btn__primary' style={{margin:"2%"}} onClick={handleDelete}>LÖSCHEN</button>
+            )}
             </div>
             {logs.map((entry, index) => (
-                <p key={index}>Changed at: {new Date(entry.changeAt).toLocaleDateString('en-GB')}, Old Time: {new Date(entry.oldDatetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
+                <p key={index}>Geändert: {new Date(entry.changeAt).toLocaleDateString('en-GB')}, Alt: {new Date(entry.oldDatetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
             ))}
             
         </div>

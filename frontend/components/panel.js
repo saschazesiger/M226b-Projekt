@@ -24,11 +24,13 @@ export default function Panel(props) {
       <div className='header'>
         <button className={isActive('user')} onClick={() => getLocation('user')}>Benutzerverwaltung</button>
         <button className={isActive('time')} onClick={() => getLocation('time')}>Zeiterfassung</button>
+        <button className={isActive('absence')} onClick={() => getLocation('absence')}>Absenzen</button>
         <button className="btn btn__secondary" onClick={logout}>Logout</button>
       </div>
       <br />
       {location === "time" && <TimePanel time={time} setTime={setTime} />}
       {location === "user" && <UserPanel users={props.users} />}
+      {location === "absence" && <UserPanel users={props.users} />}
     </>
   );
 }
