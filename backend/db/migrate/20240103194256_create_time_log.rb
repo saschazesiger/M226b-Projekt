@@ -4,7 +4,7 @@ class CreateTimeLog < ActiveRecord::Migration[7.1]
       t.references :time_entry, foreign_key: true
       t.datetime :changeAt
       t.string :oldDatetime, limit: 255
-      t.boolean :oldEdited
+      t.string :oldEdited
     end
   end
 end
