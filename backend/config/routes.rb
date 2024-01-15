@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get '/api/view', to: 'time_records#view'
   get '/api/logview', to: 'time_records#logview'
   post '/api/edit', to: 'time_records#edit'
+  post '/absence/set', to: 'absence_records#set'
+  get '/absence/view', to: 'absence_records#view'
 end

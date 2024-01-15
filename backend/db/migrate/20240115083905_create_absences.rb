@@ -1,4 +1,4 @@
-class CreateAbsence < ActiveRecord::Migration[7.1]
+class CreateAbsences < ActiveRecord::Migration[7.1]
   def change
     create_table :absence do |t|
       t.references :user, foreign_key: true
