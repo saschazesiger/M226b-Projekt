@@ -10,6 +10,7 @@ import AbsencePanel from '@/components/panel/absencepanel';
 export default function Panel(props) {
   const [location, getLocation] = useState("time");
   const [time, setTime] = useState([]);
+  const [absence, setAbsence] = useState([]);
 
   function logout() {
     localStorage.removeItem("jwt");
@@ -31,7 +32,7 @@ export default function Panel(props) {
       <br />
       {location === "time" && <TimePanel time={time} setTime={setTime} />}
       {location === "user" && <UserPanel users={props.users} />}
-      {location === "absence" && <AbsencePanel users={props.users} />}
+      {location === "absence" && <AbsencePanel users={props.users} absence={absence} setAbsence={setAbsence} />}
     </>
   );
 }
