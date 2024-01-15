@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import UserPanel from "@/components/panel/userpanel";
 import TimePanel from "@/components/panel/timepanel";
+import AbsencePanel from '@/components/panel/absencepanel';
 
 
 export default function Panel(props) {
@@ -30,7 +31,7 @@ export default function Panel(props) {
       <br />
       {location === "time" && <TimePanel time={time} setTime={setTime} />}
       {location === "user" && <UserPanel users={props.users} />}
-      {location === "absence" && <UserPanel users={props.users} />}
+      {location === "absence" && <AbsencePanel users={props.users} />}
     </>
   );
 }
