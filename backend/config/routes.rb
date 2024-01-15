@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post '/api/edit', to: 'time_records#edit'
   post '/absence/set', to: 'absence_records#set'
   get '/absence/view', to: 'absence_records#view'
+  post '/absence/approve', to: 'absence_records#approve'
 end

@@ -69,21 +69,21 @@ Absence.create!([
     user: User.find(2),
     from: DateTime.now,
     to: DateTime.now + 1.day,
-    type: 'Ferien',
+    absence_type: 'Ferien',
     approved: true
   },
   {
     user: User.find(2),
     from: DateTime.now - 2.days,
     to: DateTime.now - 1.day,
-    type: 'Schule',
+    absence_type: 'Schule',
     approved: false
   },
   {
     user: User.find(3),
     from: DateTime.now + 1.day,
     to: DateTime.now + 2.days,
-    type: 'Ferien',
+    absence_type: 'Ferien',
     approved: true
   }
 ])

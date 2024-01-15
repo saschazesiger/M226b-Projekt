@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_10_144926) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_15_083905) do
   create_table "absence", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "from"
     t.datetime "to"
-    t.string "type"
+    t.string "absence_type"
     t.boolean "approved"
     t.index ["user_id"], name: "index_absence_on_user_id"
   end

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :time_entries
+  has_many :absences
 
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 } # Adjust the minimum length as needed
