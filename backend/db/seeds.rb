@@ -14,7 +14,7 @@ User.create!([
     password: '123Heinrich', 
     firstname: 'Heinrich', 
     surname: 'Meier', 
-    email: 'gerhard.meier@tinyweb.net', 
+    email: 'heinrich.meier@byom.de', 
     supervisor_id: nil, 
     lastlogin: Time.now 
   },
@@ -23,7 +23,7 @@ User.create!([
     password: '123Willhelm',
     firstname: 'Willhelm', 
     surname: 'Unteregger', 
-    email: 'willhelm.unteregger@tinyweb.net', 
+    email: 'willhelm.unteregger@byom.de', 
     supervisor_id: 1, 
     lastlogin: Time.now 
   },
@@ -32,7 +32,7 @@ User.create!([
     password: '123Manfred',
     firstname: 'Manfred', 
     surname: 'Guntherus', 
-    email: 'manfred.guntherus@tinyweb.net', 
+    email: 'manfred.guntherus@byom.de', 
     supervisor_id: 1, 
     lastlogin: Time.now 
   },
@@ -41,7 +41,7 @@ User.create!([
     password: '123Gandolph',
     firstname: 'Gandolph', 
     surname: 'Kircher', 
-    email: 'gandolph.kircher@tinyweb.net', 
+    email: 'gandolph.kircher@byom.de', 
     supervisor_id: 1, 
     lastlogin: Time.now 
   }

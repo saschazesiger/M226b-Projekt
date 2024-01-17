@@ -25,7 +25,6 @@ export default function User(props) {
         console.log(event.target.value);
         console.log(event.target.id);
         console.log(event.target.getAttribute('username'));
-        console.log(`https://api-time.tinyweb.net/user/edit?username=${event.target.getAttribute('username')}&${event.target.getAttribute('field')}=${event.target.value}`)
         const response = await fetchAuth(`https://api-time.tinyweb.net/user/edit?username=${event.target.getAttribute('username')}&${event.target.getAttribute('field')}=${event.target.value}`, 'POST');
         console.log(response);
         if (response.success) {

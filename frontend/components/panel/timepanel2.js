@@ -60,6 +60,7 @@ export default function TimePanel2(props) {
 
     return (
         <>
+        <h2>Zeiten</h2>
             <p className="alert">{alert}</p>
             <div className="contentDiv" style={{ width: '30%' }}>
                 <p className="alert">{alert}</p>

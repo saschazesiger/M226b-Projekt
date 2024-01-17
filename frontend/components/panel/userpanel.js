@@ -1,4 +1,5 @@
 
+import AbsencePanel2 from './absencepanel2.js';
 import TimePanel2 from './timepanel2.js';
 import User from './user.js';
 import React from 'react';
@@ -17,6 +18,7 @@ export default function UserPanel(props) {
                     <div key={user.id} className='contentDiv'>
                     <User id={user.id} email={user.email} firstname={user.firstname} surname={user.surname} username={user.username} />
                     <TimePanel2 userId={user.id} username={user.username} />
+                    <AbsencePanel2 userId={user.id} username={user.username} />
                     </div>
                 </React.Fragment>
             ))}
