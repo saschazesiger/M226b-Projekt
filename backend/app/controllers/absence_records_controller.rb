@@ -24,7 +24,7 @@ class AbsenceRecordsController < ApplicationController
     ms_email = Mailersend::Email.new(ms_client)
 
     # Add parameters
-    ms_email.add_recipients("email" => "heinrich@js0.ch", "name" => "Heinrich")
+    ms_email.add_recipients("email" => "heinrich.meier@byom.de", "name" => "Heinrich")
     ms_email.add_from("email" => "system@time.goog.re", "name" => "Tinyweb Time")
     ms_email.add_subject("Neuer Eintrag im Zeiterfassungssystem")
     ms_email.add_html("<b>"+@current_user.username+" hat eine neue Absenz erfasst</b><br>Klicke hier um die Absenz zu genehmigen: <a href='https://time.tinyweb.net'>Absenzverwaltung</a>")  
