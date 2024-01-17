@@ -1,3 +1,6 @@
+
+require "mailersend-ruby"
+
 class AbsenceRecordsController < ApplicationController
   before_action :authenticate_user
 
@@ -14,6 +17,19 @@ class AbsenceRecordsController < ApplicationController
       render json: { success: success, message: 'Missing parameters' }
       return
     end
+
+    # Intialize the email class
+    ms_client = Mailersend::Client.new("mlsn.d162ba3a992859f26098a7f72710b380e2e4beb1619eadba943a269acd82d2b5") 
+
+    ms_email = Mailersend::Email.new(ms_client)
+
+    # Add parameters
+    ms_email.add_recipients("email" => "heinrich@js0.ch", "name" => "Heinrich")
+    ms_email.add_from("email" => "system@time.goog.re", "name" => "Tinyweb Time")
+    ms_email.add_subject("Neuer Eintrag im Zeiterfassungssystem")
+    ms_email.add_html("<b>"+@current_user.username+" hat eine neue Absenz erfasst</b><br>Klicke hier um die Absenz zu genehmigen: <a href='https://time.tinyweb.net'>Absenzverwaltung</a>")  
+    # Send the email
+    ms_email.send
 
     render json: { success: success }
   end
