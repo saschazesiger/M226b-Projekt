@@ -45,10 +45,6 @@ export default function TimePanel(props) {
     }
 
 
-
-
-
-
     async function sendNew() {
         let response
         if (action === "OUT") {
