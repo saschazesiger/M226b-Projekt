@@ -63,7 +63,7 @@ export default function TimePanel(props) {
                 <p className="alert">{alert}</p>
                 <h3>{props.date}</h3>
                 
-                <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action}{action === 'OUT' && <Image width={100} hei src="/out.png" alt="Out Image" />}</button>
+                <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action}</button>
 
             </div>
             {props.time.map((entry, index) => (
