@@ -21,6 +21,7 @@ export default function Time(props) {
 
     const handleInputBlur = async (event) => {
         console.log(event.target.getAttribute('field'));
+        console.log((new Date(`${event.target.getAttribute('date')} ${event.target.value}`)).toISOString())
         const response = await fetchAuth(`https://api-time.tinyweb.net/api/edit?entry=${event.target.getAttribute('field')}&time=${(new Date(`${event.target.getAttribute('date')} ${event.target.value}`)).toISOString()} `, 'POST');
         console.log(response);
         if (response.success) {
