@@ -14,8 +14,8 @@ export default function UserPanel(props) {
             {props.users?.user?.length !== 0 && <h2>Andere Benutzer</h2>}
             <br />
             {props.users.user.map((user) => (
-                <React.Fragment key={user.id}>
-                    <div key={user.id} className='contentDiv'>
+                <React.Fragment key={user.id} >
+                    <div key={user.id} className='contentDiv border'>
                     <User id={user.id} email={user.email} firstname={user.firstname} surname={user.surname} username={user.username} />
                     <TimePanel2 userId={user.id} username={user.username} />
                     <AbsencePanel2 userId={user.id} username={user.username} />
