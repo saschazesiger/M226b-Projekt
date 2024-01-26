@@ -18,7 +18,7 @@ export default function TimePanel(props) {
     async function handleData() {
         let response
         response = await fetchAuth("https://api-time.tinyweb.net/api/view", "GET");
-        if (response.entries.length !== 0) {
+        if (response.entries?.length !== 0) {
             if (response.entries[0].action === false) {
                 console.log("Entry FALSE")
                 setAction("OUT");
@@ -63,7 +63,7 @@ export default function TimePanel(props) {
                 <p className="alert">{alert}</p>
                 <h3>{props.date}</h3>
                 
-                <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action === 'OUT' ? (<img width={100} hei src="/out.png" alt="Out Image" />):(<img width={100} hei src="/in.gif" alt="Out Image" />)}</button>
+                <button className="btn btn__primary" style={{ width: "96%", margin: "2%", textAlign: "center" }} onClick={sendNew}>{action === 'OUT' ? (<img width={100} hei src="/out.png" alt="Out Image" />) : action==='IN' ? (<img width={100} height={100} src="/in.gif" alt="Out Image" />):(<></>)}</button>
 
             </div>
             {props.time.map((entry, index) => (

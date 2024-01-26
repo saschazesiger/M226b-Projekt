@@ -2,15 +2,17 @@
 
 import React, { useState } from "react";
 import fetchAuth from "@/client-js/fetchAuth";
+import BeatLoader from "react-spinners/ClipLoader";
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const response = await fetch("https://api-time.tinyweb.net/login", {
       method: "POST",
       headers: {
@@ -18,9 +20,10 @@ const LoginForm = (props) => {
       },
       body: JSON.stringify({ username, password }),
     });
-
+    
     const data = await response.json();
-    console.log(data);
+    setLoading(false);
+
     if (data.success && data.jwt) {
       localStorage.setItem("jwt", data.jwt);
       props.setLogin("loggedin");
@@ -31,7 +34,6 @@ const LoginForm = (props) => {
 
   return (
     <>
-    <div></div>
       <form onSubmit={handleLogin}>
         <div>
           <input
@@ -55,7 +57,8 @@ const LoginForm = (props) => {
           />
         </div>
         <br />
-        <button type="submit" className="btn btn__primary">Login</button>
+        <button type="submit" className="btn btn__primary">{loading === false ?("Login"):(<BeatLoader color="#ffffff" />)}</button>
+        
         <br />
         <p>{warning}</p>
       </form>
